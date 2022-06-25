@@ -1,1 +1,659 @@
-<h2><a href="https://www.khanacademy.org/computer-programming/spin-off-of-flappy-bird/4531105689026560">Spin-off of "Flappy Bird"</a></h2><script src="https://www.khanacademy.org/computer-programming/spin-off-of-flappy-bird/4531105689026560/embed.js?editor=no&buttons=no&author=yes&embed=yes"></script><p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a></p>
+<!DOCTYPE html>
+<!-- i found this at:
+http://stackoverflow.com/questions/25341597/how-can-khan-academy-computer-programs-be-run-offline-or-on-my-own-website
+all credet to them-->
+<!--legal stuff VVV-->
+<!--This work, "KA P.JS", is a derivative of "http://stackoverflow.com/questions/25341597/how-can-khan-academy-computer-programs-be-run-offline-or-on-my-own-website " by Robert Tupelo-Schneck(http://stackoverflow.com/users/394431/robert-tupelo-schneck), used under CC BY. "KA P.JS" is by michael basaj(https://www.khanacademy.org/profile/michaelbasaj/).-->
+<html>
+<head>
+    <title>Spin-off of "KA JavaScript in HTML(working)"</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var processing = new Processing(canvas, function(processing) {
+            processing.size(400, 400);
+            processing.background(0xFFF);
+    
+            var mouseIsPressed = false;
+            processing.mousePressed = function () { mouseIsPressed = true; };
+            processing.mouseReleased = function () { mouseIsPressed = false; };
+    
+            var keyIsPressed = false;
+            processing.keyPressed = function () { keyIsPressed = true; };
+            processing.keyReleased = function () { keyIsPressed = false; };
+    
+            function getImage(s) {
+                var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+                processing.externals.sketch.imageCache.add(url);
+                return processing.loadImage(url);
+            }
+    
+            with (processing) {
+                
+                
+                // INSERT YOUR KHAN ACADEMY PROGRAM HERE
+// I Copied Some Code From This https://www.khanacademy.org/computer-programming/cubix-2/4522412633489408
+// Inspired By Flappy Bird
+// On The Hot List Wow! 
+// My First Program With 10 Votes!!
+var mouse=[];
+mousePressed=function(){
+    mouse[mouseButton]=true;
+};
+mouseReleased=function(){
+    mouse[mouseButton]=false;
+    return true;
+};
+var collide=function(obj1,obj2){
+    return obj1.x<obj2.x+obj2.w&&obj1.x+obj1.w>obj2.x&&
+           obj1.y<obj2.y+obj2.h&&obj1.y+obj1.h>obj2.y;
+};
+var button=function(x,y,w,h,message,txtSize){
+    var m={x:mouseX,y:mouseY,w:1,h:1}; 
+    var self={x:x,y:y,w:w,h:h};
+    if(collide(m,self)){
+        fill(130, 130, 130,100);
+    }else{
+        fill(255, 255, 255,100);
+    }
+    strokeWeight(((w+h)/2)/15);
+    rect(x,y,w,h,5);
+    
+    fill(0, 0, 0);
+    textAlign(CENTER,CENTER);
+    textSize(txtSize);
+    text(message,x+w/2,y+h/2);
+    
+    if(collide(m,self)&&mouse[LEFT]&&mouseReleased()){
+        return true;
+    }
+};
+{
+var x=400;
+var y=random(30,340);
+var l=200;
+var aa='hell';
+var Score=0;
+var Max_Score=0;
+var zzz=400;
+var yyy=random(30,330);
+var Shop=['Selected','Cost 10','Cost 20','Cost 30','Cost 40','Cost 50','Cost 60'];
+var Coins=0;//number of Coins
+var abcd=0;
+var gap=70;
+var Achievements=['false','false','false','false','false'];
+{
+var Shop1=10;
+var Shop2=20;
+var Shop3=30;
+var Shop4=40;
+var Shop5=50;
+var Shop6=60;
+if(Score>0 || Max_Score>0 || Coins>0){
+    throw{message:'Stop Changing The Variables'};
+}
+}//button
+///Press s To Save
+///After You Press s
+///Copy The Code And Paste It From Here
+Coins=0;
+Max_Score=0;
+Shop=['Selected','Cost 10','Cost 20','Cost 30','Cost 40','Cost 50','Cost 60'];
+Achievements=['false','false','false','false','false'];
+///To Here
+draw = function() {
+    if(aa==='hell'){
+        textAlign(LEFT,CENTER);
+        stroke(0, 0, 0);
+        background(0, 208, 255);
+        fill(0, 255, 13);
+        rect(zzz,0,60,yyy);
+        rect(zzz,yyy+gap,60,320);
+        textSize(50);
+        fill(0, 0, 0);
+        text('Flappy Bird',60,100);
+        zzz=zzz-1;
+        if(zzz===-50){
+            zzz=400;
+            yyy=random(30,340);
+        }
+        if(button(175,200,50,30,'Play',10)){
+            aa='hello';
+            x=400;
+            y=random(30,340);
+            l=200;
+            aa='hello';
+            Score=0;
+        }
+        if(button(50,350,50,30,'Settings',10)){
+            aa='Settings';
+            x=400;
+            y=random(30,340);
+            l=200;
+            aa='Settings';
+            Score=0;
+        }
+        if(button(160,350,70,30,'Achievementss',10)){
+            aa='Achievements';
+            x=400;
+            y=random(30,340);
+            l=200;
+            aa='Achievements';
+            Score=0;
+        }
+        if(button(165,250,70,30,'Shop',10)){
+            aa='Shop';
+            x=400;
+            y=random(30,340);
+            l=200;
+            Score=0;
+        }
+        textSize(1);
+        strokeWeight(1);
+        textAlign(LEFT,CENTER);
+        keyReleased = function() {
+            if(keyCode===83){
+                println('///Copy The Code And Paste It From Here');
+                println("Coins="+str(Coins)+';');
+                println("Max_Score="+str(Max_Score)+';');
+                println("Shop="+'['+str(Shop[0])+','+str(Shop[1])+','+str(Shop[2])+','+str(Shop[3])+','+str(Shop[4])+','+str(Shop[5])+','+str(Shop[6])+']'+';');
+                println("Achievements="+'['+str(Achievements[0])+','+str(Achievements[1])+','+str(Achievements[2])+','+str(Achievements[3])+','+str(Achievements[4])+']'+';');
+                println('///To Here');
+            }
+        };
+    }
+    if(aa==='Settings'){
+        textAlign(LEFT,CENTER);
+        strokeWeight(1);
+        stroke(0, 0, 0);
+        background(0, 208, 255);
+        fill(0, 255, 13);
+        rect(zzz,0,60,yyy);
+        rect(zzz,yyy+gap,60,320);
+        textSize(50);
+        fill(0, 0, 0);
+        zzz=zzz-1;
+        if(zzz===-50){
+            zzz=400;
+            yyy=random(30,340);
+        }
+        if(button(15,10,50,30,'Menu',10)){
+            aa='hell';
+        }
+        if(abcd===1){
+            textSize(30);
+            text('✅',165,215);
+        }
+        if(button(150,200,30,30,'                             Easy Mode',10)){
+            var ggg=0;
+            if(abcd===1){
+                abcd=0;
+                gap=gap-20;
+                ggg=1;
+            }
+            if(abcd===0 && ggg===0){
+                abcd=1;
+                gap=gap+20;
+                yyy=random(30,310);
+            }
+        }
+        keyReleased = function() {
+            if(keyCode===83){
+                println('///Copy The Code And Paste It From Here');
+                println("Coins="+str(Coins)+';');
+                println("Max_Score="+str(Max_Score)+';');
+                println("Shop="+'['+str(Shop[0])+','+str(Shop[1])+','+str(Shop[2])+','+str(Shop[3])+','+str(Shop[4])+','+str(Shop[5])+','+str(Shop[6])+']'+';');
+                println("Achievements="+'['+str(Achievements[0])+','+str(Achievements[1])+','+str(Achievements[2])+','+str(Achievements[3])+','+str(Achievements[4])+']'+';');
+                println('///To Here');
+            }
+        };
+    }
+    if(aa==='Achievements'){
+        if(Achievements[0]==='true'&&Achievements[1]==='true'&&Achievements[2]==='true'&&Achievements[3]==='true'){
+            Achievements[4]='true';
+        }
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        background(0, 208, 255);
+        fill(0, 255, 13);
+        rect(zzz,0,60,yyy);
+        rect(zzz,yyy+gap,60,320);
+        textSize(50);
+        fill(0, 0, 0);
+        zzz=zzz-1;
+        if(zzz===-50){
+            zzz=400;
+            yyy=random(30,340);
+        }
+        if(button(15,10,50,30,'Menu',10)){
+            aa='hell';
+        }
+        fill(0, 208, 255);
+        rect(70,70,50,50,10);
+        textSize(40);
+        rect(200,70,50,50,10);
+        textSize(40);
+        if(Achievements[2]==='true'){
+            fill(0, 0, 0);
+            rect(330,70,50,50,10);
+            fill(0, 208, 255);
+        }
+        if(Achievements[2]==='false'){
+            rect(330,70,50,50,10);
+        }
+        textSize(40);
+        rect(200,200,50,50,10);
+        textSize(40);
+        rect(70,200,50,50,10);
+        textSize(40);
+        if(mouseX<125 && mouseX>60 && mouseY<125 && mouseY>60){
+            fill(255, 0, 0);
+            textSize(15);
+            text('Getting Started',100,130);
+            textSize(10);
+            text('Get A Score Of 10 Or Higher',100,140);
+            textSize(40);
+        }
+        if(mouseX<250 && mouseX>185 && mouseY<125 && mouseY>60){
+            fill(255, 0, 0);
+            textSize(15);
+            text('WOW',225,130);
+            textSize(10);
+            text('Get A Score Of 50 Or Higher',225,140);
+            textSize(40);
+        }
+        if(mouseX<375 && mouseX>310 && mouseY<125 && mouseY>60){
+            fill(255, 0, 0);
+            textSize(15);
+            text('Invisble Bird',350,130);
+            textSize(10);
+            text('Buy The Invible Bird',350,140);
+            textSize(40);
+        }
+        if(mouseX<125 && mouseX>60 && mouseY<250 && mouseY>185){
+            fill(255, 0, 0);
+            textSize(15);
+            text('Sold Out',100,265);
+            textSize(10);
+            text('Buy All The Birds',100,280);
+            textSize(40);
+        }
+        if(mouseX<250 && mouseX>185 && mouseY<250 && mouseY>185 && Achievements[4]==='false'){
+            fill(255, 0, 0);
+            textSize(15);
+            text('???',225,265);
+            textSize(10);
+            text('???',225,280);
+            textSize(40);
+        }
+        if(mouseX<250 && mouseX>185 && mouseY<250 && mouseY>185 && Achievements[4]==='true'){
+            fill(255, 0, 0);
+            textSize(15);
+            text('???',225,265);
+            textSize(10);
+            text('Buy All The Birds And Unlock All The Achievements',225,280);
+            textSize(40);
+        }
+        if(Achievements[0]==='false'){
+            text('🔒',95,95);
+        }
+        if(Achievements[1]==='false'){
+            text('🔒',225,95);
+        }
+        if(Achievements[2]==='false'){
+            text('🔒',355,95);
+        }
+        if(Achievements[3]==='false'){
+        text('🔒',95,225);
+        }
+        if(Achievements[4]==='false'){
+            text('🔒',225,225);
+        }
+        if(Achievements[0]==='true'){
+            fill(0, 0, 0);
+            text('10',95,95);
+        }
+        if(Achievements[1]==='true'){
+            text('50',225,95);
+        }
+        if(Achievements[2]==='true'){
+            stroke(0, 208, 255);
+            fill(0, 208, 255);
+            rect(345,85,20,20);
+            fill(255, 255, 255);
+            ellipse(345+15,85+7,8,8);
+            strokeWeight(3);
+            point(345+16.8,85+6.5);
+            strokeWeight(1);
+        }
+        if(Achievements[3]==='true'){
+            fill(255, 0, 0);
+            rect(85,215,20,20);
+            fill(255, 255, 255);
+            ellipse(85+15,215+7,8,8);
+            strokeWeight(3);
+            stroke(0, 0, 0);
+            point(85+16.8,215+6.5);
+            strokeWeight(1);
+        }
+        if(Achievements[4]==='true'){
+        }
+        keyReleased = function() {
+            if(keyCode===83){
+                println('///Copy The Code And Paste It From Here');
+                println("Coins="+str(Coins)+';');
+                println("Max_Score="+str(Max_Score)+';');
+                println("Shop="+'['+str(Shop[0])+','+str(Shop[1])+','+str(Shop[2])+','+str(Shop[3])+','+str(Shop[4])+','+str(Shop[5])+','+str(Shop[6])+']'+';');
+                println("Achievements="+'['+str(Achievements[0])+','+str(Achievements[1])+','+str(Achievements[2])+','+str(Achievements[3])+','+str(Achievements[4])+']'+';');
+                println('///To Here');
+            }
+        };
+    }
+    if(aa==='Shop'){
+        background(0, 0, 0);
+        stroke(255, 255, 255);
+        line(0,50,400,50);
+        textSize(25);
+        fill(255, 255, 255);
+        text('Shop',200,20);
+        
+        if(button(15,10,50,30,'Menu',10)){
+            aa='hell';
+        }
+        textSize(25);
+        fill(255, 255, 255);
+        text('Coins:'+str(Coins),220,250);
+        fill(255, 0, 0);///1
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(60,79,20,20);
+        fill(255, 255, 255);
+        ellipse(60+15,79+7,8,8);
+        strokeWeight(3);
+        point(60+16.8,79+6.5);
+        stroke(255, 255, 255);
+        fill(255, 98, 0);///2
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(200,79,20,20);
+        fill(255, 255, 255);
+        ellipse(200+15,79+7,8,8);
+        strokeWeight(3);
+        point(200+16.8,79+6.5);
+        stroke(255, 255, 255);
+        fill(251, 255, 0);///3
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(340,79,20,20);
+        fill(255, 255, 255);
+        ellipse(340+15,79+7,8,8);
+        strokeWeight(3);
+        point(340+16.8,79+6.5);
+        stroke(255, 255, 255);
+        fill(47, 0, 255);///row 2 1
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(60,160,20,20);
+        fill(255, 255, 255);
+        ellipse(60+15,160+7,8,8);
+        strokeWeight(3);
+        point(60+16.8,160+6.5);
+        stroke(255, 255, 255);
+        fill(230, 0, 255);///row 2 2
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(200,160,20,20);
+        fill(255, 255, 255);
+        ellipse(200+15,160+7,8,8);
+        strokeWeight(3);
+        point(200+16.8,160+6.5);
+        stroke(255, 255, 255);
+        fill(0, 255, 13);///row 2 3
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(340,160,20,20);
+        fill(255, 255, 255);
+        ellipse(340+15,160+7,8,8);
+        strokeWeight(3);
+        point(340+16.8,160+6.5);
+        stroke(255, 255, 255);
+        fill(0, 208, 255);///row 3 1
+        stroke(0, 0, 0);
+        strokeWeight(1);
+        rect(60,240,20,20);
+        fill(255, 255, 255);
+        ellipse(60+15,240+7,8,8);
+        strokeWeight(3);
+        point(60+16.8,240+6.5);
+        stroke(255, 255, 255);
+        if(button(0,50,140,79,Shop[0],10)){
+            if(Shop[0]==='Select'){
+                Shop[0]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==0){
+                        Shop[kkkk]='Select';
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+        }
+        if(button(140,50,140,79,Shop[1],10)){
+            if(Shop[1]==='Select'){
+                Shop[1]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==1){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[1]==='Cost 10' &&Coins>=Shop1){
+                Shop[1]='Select';
+                Coins=Coins-Shop1;
+            }
+        }
+        if(button(280,50,140,79,Shop[2],10)){
+            if(Shop[2]==='Select'){
+                Shop[2]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==2){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[2]==='Cost 20' &&Coins>=Shop2){
+                Shop[2]='Select';
+                Coins=Coins-Shop2;
+            }
+        }
+        if(button(0,130,140,79,Shop[3],10)){
+            if(Shop[3]==='Select'){
+                Shop[3]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==3){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[3]==='Cost 30' &&Coins>=Shop3){
+                Shop[3]='Select';
+                Coins=Coins-Shop3;
+            }
+        }
+        if(button(140,130,140,79,Shop[4],10)){
+            if(Shop[4]==='Select'){
+                Shop[4]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==4){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[4]==='Cost 40' &&Coins>=Shop4){
+                Shop[4]='Select';
+                Coins=Coins-Shop4;
+            }
+        }
+        if(button(280,130,140,79,Shop[5],10)){
+            if(Shop[5]==='Select'){
+                Shop[5]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==5){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[5]==='Cost 50' &&Coins>=Shop5){
+                Shop[5]='Select';
+                Coins=Coins-Shop5;
+            }
+        }
+        if(button(0,210,140,79,Shop[6],10)){
+            if(Shop[6]==='Select'){
+                Shop[6]='Selected';
+                var kkkk=0;
+                while(kkkk<7){
+                    if(Shop[kkkk]==='Selected' && kkkk!==6){
+                        Shop[kkkk]='Select';
+                        
+                    }
+                    kkkk=kkkk+1;
+                }
+            }
+            if(Shop[6]==='Cost 60' &&Coins>=Shop6){
+                Shop[6]='Select';
+                Coins=Coins-Shop6;
+            }
+        }
+        if(Shop[6]!=='Cost 60'){
+            Achievements[2]='true';
+        }
+        if(Shop[1]!=='Cost 10' && Shop[2]!=='Cost 20' && Shop[3]!=='Cost 30' && Shop[4]!=='Cost 40' && Shop[5]!=='Cost 50' && Shop[6]!=='Cost 60'){
+            Achievements[3]='true';
+        }
+        textSize(1);
+    }
+    if(aa==='hello'){
+        stroke(0, 0, 0);
+        textAlign(LEFT,CENTER);
+        background(0, 208, 255);
+        fill(0, 255, 13);
+        rect(x,0,60,y);
+        rect(x,y+gap,60,320);
+        if(Shop[0]==='Selected'){
+            fill(255, 0, 0);
+        }
+        if(Shop[1]==='Selected'){
+            fill(255, 98, 0);
+        }
+        if(Shop[2]==='Selected'){
+            fill(251, 255, 0);
+        }
+        if(Shop[3]==='Selected'){
+            fill(47, 0, 255);
+        }
+        if(Shop[4]==='Selected'){
+            fill(230, 0, 255);
+        }
+        if(Shop[5]==='Selected'){
+            fill(0, 255, 13);
+        }
+        if(Shop[6]==='Selected'){
+            stroke(0, 208, 255);
+            fill(0, 208, 255);
+        }
+        rect(200,l,20,20);
+        x=x-1;
+        fill(255, 255, 255);
+        ellipse(215,l+7,8,8);
+        strokeWeight(3);
+        point(216.8,l+6.5);
+        strokeWeight(1);
+        if(x===-50){
+            x=400;
+            y=random(30,340);
+        }
+        if(Score>Max_Score){
+            Max_Score=Score;
+        }
+        textSize(15);
+        fill(0, 0, 0);
+        text('Score:'+str(Score),15,25);
+        text('Max Score:'+str(Max_Score),15,50);
+        text('Coins:'+str(Coins),15,75);
+        textSize(50);
+        if((x+60)===200){
+            Score=Score+1;
+            Coins=Coins+1;
+        }
+        if(Score>=10){
+            Achievements[0]='true';
+        }
+        if(Score>=50){
+            Achievements[1]='true';
+        }
+        if((x-20)<200 && (x)>140 && (l+20)>(y+gap)){
+            aa='l';
+            fill(255, 0, 0);
+            text('You Lost',120,200);
+            textSize(20);
+            fill(0, 0, 0);
+            text('Press Any Key To Continue',100,230);
+        }
+        if((x-20)<200 && (x)>140 && (l)<(y)){
+            aa='l';
+            fill(255, 0, 0);
+            text('You Lost',120,200);
+            textSize(20);
+            fill(0, 0, 0);
+            text('Press Any Key To Continue',100,230);
+        }
+        if(l>400 || l<0){
+            aa='l';
+            fill(255, 0, 0);
+            text('You Lost',120,200);
+            textSize(20);
+            fill(0, 0, 0);
+            text('Press Any Key To Continue',100,230);
+        }
+        if(__mousePressed){
+            l=l-3;
+        }
+        else{
+            l=l+2;
+        }
+    }
+    if(aa==='l'){
+        if (keyIsPressed) {
+            aa='hell';
+        }
+    }
+};
+}///main code
+
+                
+                
+            }
+            if (typeof draw !== 'undefined') processing.draw = draw;
+        });
+    </script>
+</body>
+</html>
